@@ -1,0 +1,51 @@
+
+header#page_header {
+	width: 960px;
+}
+
+#search_bar {
+	width: 640px;
+}
+
+header#page_header nav ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+#page_header nav ul li {
+	padding: 0;
+	margin: 0 20px 0 0;
+	display: inline;
+}
+
+#result_content {
+	float: left;
+	width: 640px;
+}
+
+#beatsbucket > .contents-area{
+    position:absolute;
+    top:0;
+    left:0;
+    right:360px;
+    height:100%;
+}
+
+#beatsbucket > .player-area{
+    position:absolute;
+    top:0;
+    right:0;
+    width:360px;
+    height:100%;
+}
+
+#beatsbucket .player-area .ytplayer {
+    width: 320px;
+}
+
+/*
+#ytplayer {
+    width: 320px;
+}
+*/
