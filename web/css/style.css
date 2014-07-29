@@ -1,4 +1,9 @@
 
+body {
+    font-size: 12px;
+    font-family: dotum;
+}
+
 header#page_header {
 	width: 960px;
 }

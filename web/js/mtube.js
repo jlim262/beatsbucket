@@ -190,15 +190,14 @@ var getRealtimeChart = function(chartType_p, page_p, count_p) {
 $(function() {
 
     $("#beatsbucket .player-area .controls p .add").click(function() {
-        var playlist = ['abc', 'def', 'ghi', 'jkl', 'mno'];
 
-        $.each(playlist, function(i, item) {
-            $("#beatsbucket .player-area .playlist").append('<p class="title">' + item + "</p>");
+        $("#beatsbucket .contents-area .search-result h3").each(function(i, v) {
+            var songInfo = $(this).text();
+            $("#beatsbucket .player-area .playlist").append('<p class="title">' + songInfo + "</p>");
+            addytVideoId(songInfo);
         });
 
-        $("#beatsbucket .contents-area .search-result > div > p > img").each(function(i, v) {
-            addytVideoId($(this).attr('alt'));
-        });
+        ytplayer && ytplayer.loadPlaylist(ytPlayList);
 
     });
 
@@ -208,6 +207,16 @@ $(function() {
         $("#beatsbucket .player-area .playlist .title").remove();
 
 
+    });
+
+    $("#beatsbucket .player-area .controls .playlist p").click(function() {
+        if (ytplayer) {
+            // ytIndex = ytplayer.getPlaylistIndex() + 1;
+            // ytplayer.cuePlaylist(ytPlayList);
+            ytplayer.loadPlaylist(ytPlayList);
+        } else {
+            alert("no ytvideo");
+        }
     });
 
 
