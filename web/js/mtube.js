@@ -139,7 +139,7 @@ var getRealtimeChart = function(chartType_p, page_p, count_p) {
 //							)
 //						);
 					
-					$("div#result_content")
+					$("#beatsbucket .contents-area .search-result")
 						.append($('<h3>')
 							.append(songName + ' - ' + artist)
 						)
@@ -188,12 +188,35 @@ var getRealtimeChart = function(chartType_p, page_p, count_p) {
 };
 
 $(function() {
-	
+
+    $("#beatsbucket .player-area .controls p .add").click(function() {
+        var playlist = ['abc', 'def', 'ghi', 'jkl', 'mno'];
+
+        $.each(playlist, function(i, item) {
+            $("#beatsbucket .player-area .playlist").append('<p class="title">' + item + "</p>");
+        });
+
+        $("#beatsbucket .contents-area .search-result > div > p > img").each(function(i, v) {
+            addytVideoId($(this).attr('alt'));
+        });
+
+    });
+
+    $("#beatsbucket .player-area .controls p .clear").click(function() {
+
+
+        $("#beatsbucket .player-area .playlist .title").remove();
+
+
+    });
+
+
+
 	$( "#accordion" ).accordion({
         heightStyle: "content"
     });
 	
-	$("#realtime").click(function() {
+	$("#beatsbucket .contents-area .chart-area #realtime").click(function() {
 		currentChartType = 'realtime';
 		//$("#result_content ul#queue :not(li.info) :not(a.more)").empty();
 		getRealtimeChart(currentChartType, 1, defaultLoadCount);
@@ -416,3 +439,4 @@ function _run() {
 }
 google.setOnLoadCallback(_run);
 */
+

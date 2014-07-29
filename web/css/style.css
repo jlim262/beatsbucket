@@ -13,7 +13,7 @@ header#page_header nav ul {
 	padding: 0;
 }
 
-#page_header nav ul li {
+#beatsbucket .contents-area .chart-area nav ul li {
 	padding: 0;
 	margin: 0 20px 0 0;
 	display: inline;

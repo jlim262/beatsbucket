@@ -21,7 +21,22 @@
 
 
     <div class="contents-area">
+        <div class="chart-area">
+            <nav>
+                <ul id="chart">
+                    <li id="realtime">실시간</li>
+                    <li id="top_album">앨범차트</li>
+                    <li id="today_top_song">일간차트</li>
+                    <li id="top_genres">장르차트(가요)</li>
+                    <li id="new_song">최신곡</li>
+                    <li id="new_album">최신앨범</li>
+                </ul>
+            </nav>
+        </div>
 
+        <div class="search-result">
+
+        </div>
 
     </div>
 
@@ -32,6 +47,7 @@
         </div>
         <div class="controls">
             <p>Controls</p>
+            <p><span class="add">Add</span> <span class="clear">Clear</span></p>
         </div>
         <div class="playlist">
             <p>Play List</p>
