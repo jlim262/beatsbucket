@@ -35,7 +35,7 @@
         </div>
 
         <div class="search-result">
-
+            <table></table>
         </div>
 
     </div>

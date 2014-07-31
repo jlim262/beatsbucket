@@ -9,6 +9,9 @@ var endPage;
 
 var ytIndex = 0;
 var ytPlayList = new Array();
+var searchedSongs = new Array();
+var playList = new Array();
+
 //
 //$(window).scroll(
 //		function(e) {
@@ -57,6 +60,30 @@ var addytVideoId = function(query_p) {
 	});
 };
 
+var getytVideoId = function(query_p) {
+    $.ajax({
+        type : "GET",
+        url : "http://gdata.youtube.com/feeds/api/videos?",
+        dataType : "jsonp",
+        data : {
+            q : query_p,
+            alt : 'json',
+            'start-index' : 1,
+            'max-result' : 1,
+            v : 2
+        },
+        success : function(response) {
+            var id = response.feed.entry[0].media$group.yt$videoid.$t;
+            return id;
+        },
+        erroe : function() {
+            alert('f');
+        }
+    });
+};
+
+
+
 var getRealtimeChart = function(chartType_p, page_p, count_p) {
 	currentPage = page_p;
 	var subUrl;
@@ -98,8 +125,13 @@ var getRealtimeChart = function(chartType_p, page_p, count_p) {
 			endPage = response.melon.totalPages;
 			if ([ 'realtime', 'todayTopSong', 'topGenres', 'newSong' ]
 					.indexOf(chartType_p) > -1) {
-				
+
+
+
 				$.each(response.melon.songs.song, function(i, item) {
+                    searchedSongs.push(item);
+
+                    var albumName = item.albumName;
 					var songName = item.songName;
 					var artist = '';
 					$.each(item.artists.artist, function(j, item_j) {
@@ -139,22 +171,38 @@ var getRealtimeChart = function(chartType_p, page_p, count_p) {
 //							)
 //						);
 					
-					$("#beatsbucket .contents-area .search-result")
-						.append($('<h3>')
-							.append(songName + ' - ' + artist)
-						)
-						.append($('<div>')
-							.append($('<p>')
-								.append($('<img>', {
-									src: imageUrl + getImageSubUrl(item.albumId.toString()),
-									alt: songName + ' ' + artist,
-									title: songName,
-									click: function() {
-										addytVideoId($(this).attr('alt'));
-									}
-								}))
-							)
-						);
+					$("#beatsbucket .contents-area .search-result table")
+                        .append($('<tr>')
+                            .append($('<td>')
+
+                                        .append($('<img>', {
+                                            src: imageUrl + getImageSubUrl(item.albumId.toString()),
+                                            width: 50,
+                                            height: 50,
+                                            alt: songName + ' ' + artist,
+                                            title: songName,
+                                            click: function() {
+                                                addytVideoId($(this).attr('alt'));
+                                            }
+                                        }))
+
+                            )
+                            .append($('<td>').append(albumName))
+                            .append($('<td>').append(songName))
+                            .append($('<td>').append(artist))
+                            .append($('<td>', {
+                                class: "addToPlayList",
+                                click: function() {
+                                    addToPlaylist(i);
+                                    stopVideo();
+                                    clearVideo();
+                                    loadVideoById(getytVideoId(songName + ' ' + artist));
+
+
+                                }
+                            }).append('+'))
+                        )
+
 					
 					
 					
@@ -187,17 +235,40 @@ var getRealtimeChart = function(chartType_p, page_p, count_p) {
 	});
 };
 
+var addToPlaylist = function(idx) {
+
+    var s = searchedSongs[idx];
+    playList.push(s);
+    var artist = '';
+    $.each(s.artists.artist, function(j, item_j) {
+        artist += item_j.artistName;
+        artist += ' ';
+    });
+    $("#beatsbucket .player-area .playlist").append('<p class="title">' + s.songName + ' - ' +artist + "</p>");
+}
+
 $(function() {
 
     $("#beatsbucket .player-area .controls p .add").click(function() {
 
-        $("#beatsbucket .contents-area .search-result h3").each(function(i, v) {
-            var songInfo = $(this).text();
-            $("#beatsbucket .player-area .playlist").append('<p class="title">' + songInfo + "</p>");
-            addytVideoId(songInfo);
+        playList = searchedSongs.slice(0);
+
+        $.each(playList, function(i, s) {
+            var artist = '';
+            $.each(s.artists.artist, function(j, item_j) {
+                artist += item_j.artistName;
+                artist += ' ';
+            });
+            $("#beatsbucket .player-area .playlist").append('<p class="title">' + s.songName + ' - ' + artist + "</p>");
         });
 
-        ytplayer && ytplayer.loadPlaylist(ytPlayList);
+//        $("#beatsbucket .contents-area .search-result h3").each(function(i, v) {
+//            var songInfo = $(this).text();
+//            $("#beatsbucket .player-area .playlist").append('<p class="title">' + songInfo + "</p>");
+//            addytVideoId(songInfo);
+//        });
+//
+//        ytplayer && ytplayer.loadPlaylist(ytPlayList);
 
     });
 
@@ -322,7 +393,7 @@ $("#album_image").css({
         ytplayer = new YT.Player('ytplayer', {
           height: '240',
           width: '320',
-          videoId: '',
+          videoId: 'Wa5B22KAkEk',
           events: {
             'onReady': onPlayerReady,
             'onStateChange': onPlayerStateChange
@@ -376,9 +447,17 @@ $("#album_image").css({
     		}
     	}
       }
-      function stopVideo() {
+var stopVideo = function() {
         ytplayer.stopVideo();
       }
+
+var clearVideo = function() {
+        ytplayer && ytplayer.clearVideo();
+    }
+
+var loadVideoById = function(query) {
+        ytplayer && ytplayer.loadVideoById(getytVideoId(query));
+    }
 
 /*
 google.load("swfobject", "2.1");
