@@ -1,15 +1,16 @@
 
-var playlist = new function() {
-    q = [];
+var playlist = function() {
+    var q = new Array();
 
-    init = function() {
+    this.init = function() {
         q = [];
     }
-    push = function(song) {
+
+    this.push = function(song) {
         q.push(song);
     };
 
-    pop = function() {
+    this.pop = function() {
         return q.pop();
     }
 

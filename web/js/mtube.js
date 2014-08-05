@@ -7,27 +7,116 @@ var currentChartType;
 var currentPage;
 var endPage;
 
-var ytIndex = 0;
 var ytPlayList = new Array();
 var searchedSongs = new Array();
-var playList = new Array();
 
+// for player controls
+var playList = new Array();
 var currentPlayingIndex = 0;
 var stopPlayer = true;
 
-//
-//$(window).scroll(
-//		function(e) {
-//			d_height = $(document).height(); // 다큐멘트 크기
-//			w_height = $(window).height(); // 브라우저 크기
-//			s_height = d_height - w_height;
-//			d_top = $(document).scrollTop(); // 다큐멘트 최상위 좌표
-//			if ((s_height - d_top) < 1) {
-//				if (currentPage < endPage)
-//					getRealtimeChart(currentChartType, currentPage + 1,
-//							defaultLoadCount);
-//			}
-//		});
+
+
+
+var youtubeService = function() {
+
+    var ytplayer;
+
+    this.init = function() {
+        var tag = document.createElement('script');
+        tag.src = "//www.youtube.com/iframe_api";
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+
+    }
+
+    this.onReady = function() {
+        ytplayer = new YT.Player('ytplayer', {
+            height: '240',
+            width: '320',
+            videoId: 'Wa5B22KAkEk',
+            events: {
+                'onReady': onPlayerReady,
+                'onStateChange': onPlayerStateChange
+            }
+        });
+    }
+
+    function onPlayerReady(event) {
+        event.target.setPlaybackQuality("small");
+        event.target.setVolume(50);
+    }
+
+    function onPlayerStateChange(event) {
+        if (event.data == YT.PlayerState.ENDED && !stopPlayer) {
+            currentPlayingIndex++;
+            setTimeout(playVideo, 500);
+        }
+    }
+
+    var getytVideoId = function(query_p, callback) {
+        $.ajax({
+            type : "GET",
+            url : "http://gdata.youtube.com/feeds/api/videos?",
+            dataType : "jsonp",
+            data : {
+                q : query_p,
+                alt : 'json',
+                'start-index' : 1,
+                'max-result' : 1,
+                v : 2
+            },
+            success : function(response) {
+                var id = response.feed.entry[0].media$group.yt$videoid.$t;
+                if (callback)
+                    callback(id);
+                else
+                    return id;
+            },
+            erroe : function() {
+                alert('f');
+            }
+        });
+    };
+
+    var stopVideo = function() {
+        ytplayer.stopVideo();
+    };
+
+    var clearVideo = function() {
+        ytplayer && ytplayer.clearVideo();
+    };
+
+    var loadVideoById = function(query_p) {
+        ytplayer && ytplayer.loadVideoById(query_p);
+    };
+
+    var playVideo = function() {
+        if (currentPlayingIndex < playList.length) {
+
+            stopVideo();
+            clearVideo();
+            stopPlayer = false;
+
+            var song = playList[currentPlayingIndex];
+            var songName = song.songName;
+            var artist = '';
+            $.each(song.artists.artist, function(j, item_j) {
+                artist += item_j.artistName;
+                artist += ' ';
+            });
+
+            getytVideoId(songName + ' ' + artist, loadVideoById);
+
+        } else {
+            stopPlayer = true;
+            alert("no songs in the list");
+        }
+    }
+}
+
+
 
 var getImageSubUrl = function(albumId) {
     var len = albumId.length;
@@ -62,68 +151,6 @@ var addytVideoId = function(query_p) {
         }
     });
 };
-
-var getytVideoId = function(query_p, callback) {
-    $.ajax({
-        type : "GET",
-        url : "http://gdata.youtube.com/feeds/api/videos?",
-        dataType : "jsonp",
-        data : {
-            q : query_p,
-            alt : 'json',
-            'start-index' : 1,
-            'max-result' : 1,
-            v : 2
-        },
-        success : function(response) {
-            var id = response.feed.entry[0].media$group.yt$videoid.$t;
-            if (callback)
-                callback(id);
-            else
-                return id;
-        },
-        erroe : function() {
-            alert('f');
-        }
-    });
-};
-
-var stopVideo = function() {
-    ytplayer.stopVideo();
-};
-
-var clearVideo = function() {
-    ytplayer && ytplayer.clearVideo();
-};
-
-var loadVideoById = function(query_p) {
-    ytplayer && ytplayer.loadVideoById(query_p);
-};
-
-var playVideo = function() {
-    if (currentPlayingIndex < playList.length) {
-
-        stopVideo();
-        clearVideo();
-        stopPlayer = false;
-
-        var song = playList[currentPlayingIndex];
-        var songName = song.songName;
-        var artist = '';
-        $.each(song.artists.artist, function(j, item_j) {
-            artist += item_j.artistName;
-            artist += ' ';
-        });
-
-        getytVideoId(songName + ' ' + artist, loadVideoById);
-
-    } else {
-        stopPlayer = true;
-        alert("no songs in the list");
-    }
-}
-
-
 
 var getRealtimeChart = function(chartType_p, page_p, count_p) {
     currentPage = page_p;
@@ -403,73 +430,4 @@ $("#album_image").css({
     border: '2px solid black'
 })
 
-// 2. This code loads the IFrame Player API code asynchronously.
-var tag = document.createElement('script');
-tag.src = "//www.youtube.com/iframe_api";
-var firstScriptTag = document.getElementsByTagName('script')[0];
-firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-// 3. This function creates an <iframe> (and YouTube player)
-//    after the API code downloads.
-var ytplayer;
-function onYouTubeIframeAPIReady() {
-    ytplayer = new YT.Player('ytplayer', {
-        height: '240',
-        width: '320',
-        videoId: 'Wa5B22KAkEk',
-        events: {
-            'onReady': onPlayerReady,
-            'onStateChange': onPlayerStateChange
-        }
-    });
-}
-
-// 4. The API will call this function when the video player is ready.
-function onPlayerReady(event) {
-    //event.target.playVideo();
-    event.target.setPlaybackQuality("small");
-    event.target.setVolume(50);
-}
-
-// 5. The API calls this function when the player's state changes.
-//    The function indicates that when playing a video (state=1),
-//    the player should play for six seconds and then stop.
-var done = false;
-function onPlayerStateChange(event) {
-    if (event.data == YT.PlayerState.ENDED && !stopPlayer) {
-        currentPlayingIndex++;
-        setTimeout(playVideo, 500);
-//          done = true;
-
-    }
-    if (ytplayer) {
-
-//    		switch (newState) {
-//    		case -1:// unstarted
-//    			break;
-//    		case 0: // ended
-//    			ytIndex = ytplayer.getPlaylistIndex() + 1;
-//    			if (ytPlayList.length > ytIndex) {
-//    				ytplayer.stopVideo();
-//    				ytplayer.clearVideo();
-//    				// ytplayer.cuePlaylist(ytPlayList);
-//    				// setTimeout(ytplayer.loadPlaylist(ytPlayList, ytIndex), 10);
-//    				// // ms
-//    				ytplayer.loadPlaylist(ytPlayList, ytIndex);
-//    			}
-//    			// alert('end');
-//    			break;
-//    		case 1: // playing
-//    			break;
-//    		case 2: // paused
-//    			break;
-//    		case 3: // buffering
-//    			break;
-//    		case 5: // cued
-//    			// ytplayer.playVideoAt(ytIndex);
-//    			break;
-//    		default:
-//    			break;
-//    		}
-    }
-}

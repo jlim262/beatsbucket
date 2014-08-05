@@ -9,7 +9,10 @@
     <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
     <!--script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js"></script-->
     <script src="http://www.google.com/jsapi" type="text/javascript"></script>
-    <script type="text/javascript" src="/js/mtube.js"></script>
+    <script type="text/javascript" src="/js/youtube.js"></script>
+    <script type="text/javascript" src="/js/player.js"></script>
+    <script type="text/javascript" src="/js/melon.js"></script>
+    <script type="text/javascript" src="/js/beatsbucket.js"></script>
 
     <title>BeatsBucket</title>
 </head>

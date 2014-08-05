@@ -1,44 +1,95 @@
 
-var player = new function(youtubePlayer) {
-    var ytPlayer = youtubePlayer;
-    var songList = new playList();
-    var playOrderList = new Arrays();
-    var repeat.type = ["NONE", "ONE", "ALL"];
+var player = function(youtubeService_p) {
+    var youtubeService = youtubeService_p;
+    var songList = []; //new playList();
+    var playOrderList = [];//new Arrays();
+    var currentPlayIndex = 0;
+    var repeat = ["NONE", "ONE", "ALL"];
     var shuffle = false;
 
-    var play = function() {
+    this.isStopped = function() {
+        return youtubeService.bStopped;
+    }
 
+    this.increasePlayIndex = function() {
+        currentPlayIndex++;
+    }
+
+    this.decreasePlayIndex = function() {
+        if (currentPlayIndex > 1)
+            currentPlayIndex--;
+        else
+            currentPlayIndex = 0;
+    }
+
+    this.play = function() {
+        youtubeService.bStopped = false;
+
+        if (currentPlayIndex < songList.length) {
+            this.stop();
+            this.clear();
+
+            var song = songList[currentPlayIndex];
+            var songName = song.songName;
+            var artist = '';
+            $.each(song.artists.artist, function(j, artistItem) {
+                artist += artistItem.artistName;
+                artist += ' ';
+            });
+
+            youtubeService.playVideo(songName + ' ' + artist);
+        } else {
+            alert("no songs in the list");
+        }
     };
 
-    var stop = function() {
+    this.clear = function() {
+        youtubeService.clearVideo();
+    }
+
+    this.stop = function() {
+        youtubeService.bStopped = true;
+        youtubeService.stopVideo()
+    }
+
+    this.pause = function() {
 
     }
 
-    var resume = function() {
+    this.resume = function() {
 
     }
 
-    var next = function() {
+    this.next = function() {
 
     }
 
-    var prev = function() {
+    this.prev = function() {
+        beatsbucketPlayer.decreasePlayIndex();
+        beatsbucketPlayer.playVideo();
+    }
+
+    this.repeat = function() {
+        beatsbucketPlayer.increasePlayIndex()
+        beatsbucketPlayer.playVideo();
+    }
+
+    this.shuffle = function() {
 
     }
 
-    var repeat = function() {
+    this.addSongsToPlayList = function(song_p) {
+        if(song_p instanceof Array)
+            songList.concat(song_p);
+        else
+            songList.push(song_p);
+    }
+
+    this.removeSongsFromPlayList = function() {
 
     }
 
-    var shuffle = function() {
-
-    }
-
-    var addSongsToPlayList = function() {
-
-    }
-
-    var removeSongsFromPlayList = function() {
+    this.clearPlayList = function() {
 
     }
 
