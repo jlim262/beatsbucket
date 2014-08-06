@@ -6,6 +6,10 @@ function onYouTubeIframeAPIReady() {
     youtubeService.onReady();
 }
 
+//function onPlayerStateChange(event) {
+//    youtubeService.
+//}
+
 var beatsbucketPlayer = new player(youtubeService);
 var melonService = new melonService(beatsbucketPlayer);
 
@@ -38,9 +42,10 @@ $(function() {
 
         //playList = searchedSongs.slice(0);
         var songs = melonService.getSearchedSongs();//searchedSongs.slice(0);
-        beatsbucketPlayer.addSongsToPlayList(songs);
+
 
         $.each(songs, function(i, songItem) {
+            beatsbucketPlayer.addSongsToPlayList(songItem);
             var artist = '';
             $.each(songItem.artists.artist, function(j, artistItem) {
                 artist += artistItem.artistName;
@@ -53,14 +58,10 @@ $(function() {
 
     $("#beatsbucket .player-area .controls p .clear").click(function() {
         $("#beatsbucket .player-area .playlist .title").remove();
+        beatsbucketPlayer.clearPlayList();
     });
 
     $("#beatsbucket .player-area .controls .playlist p").click(function() {
-        if (ytplayer) {
-            ytplayer.loadPlaylist(ytPlayList);
-        } else {
-            alert("no ytvideo");
-        }
     });
 
     $("#beatsbucket .contents-area .chart-area #realtime").click(function() {
@@ -93,10 +94,3 @@ $(function() {
         melonService.getRealtimeChart(currentChartType, 1, defaultLoadCount);
     });
 });
-
-$("#album_image").css({
-    border: '2px solid black'
-})
-
-
-

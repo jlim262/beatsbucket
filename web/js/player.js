@@ -23,11 +23,10 @@ var player = function(youtubeService_p) {
     }
 
     this.play = function() {
-        youtubeService.bStopped = false;
-
         if (currentPlayIndex < songList.length) {
-            this.stop();
+            //this.stop();
             this.clear();
+            youtubeService.bStopped = false;
 
             var song = songList[currentPlayIndex];
             var songName = song.songName;
@@ -38,6 +37,10 @@ var player = function(youtubeService_p) {
             });
 
             youtubeService.playVideo(songName + ' ' + artist);
+
+
+            $("#beatsbucket .player-area .playlist p:nth-child(" + (currentPlayIndex+1) + ")").css("color", "green");
+
         } else {
             alert("no songs in the list");
         }
@@ -50,6 +53,7 @@ var player = function(youtubeService_p) {
     this.stop = function() {
         youtubeService.bStopped = true;
         youtubeService.stopVideo()
+        $("#beatsbucket .player-area .playlist p:nth-child(" + (currentPlayIndex+1) + ")").css("color", "black");
     }
 
     this.pause = function() {
@@ -61,17 +65,19 @@ var player = function(youtubeService_p) {
     }
 
     this.next = function() {
-
+        this.stop();
+        this.increasePlayIndex();
+        this.play();
     }
 
     this.prev = function() {
-        beatsbucketPlayer.decreasePlayIndex();
-        beatsbucketPlayer.playVideo();
+        this.stop();
+        this.decreasePlayIndex();
+        this.play();
     }
 
     this.repeat = function() {
-        beatsbucketPlayer.increasePlayIndex()
-        beatsbucketPlayer.playVideo();
+
     }
 
     this.shuffle = function() {
@@ -90,7 +96,9 @@ var player = function(youtubeService_p) {
     }
 
     this.clearPlayList = function() {
-
+        songList = [];
+        currentPlayIndex = 0;
+        this.stop();
     }
 
 }

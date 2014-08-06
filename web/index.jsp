@@ -64,7 +64,7 @@
             </p>
         </div>
         <div class="playlist">
-            <p>Play List</p>
+
         </div>
 
 

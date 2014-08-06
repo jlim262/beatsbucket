@@ -28,9 +28,12 @@ var youtubeService = function() {
     };
 
     function onPlayerStateChange(event) {
-        if (event.data == YT.PlayerState.ENDED && !stopPlayer) {
-            currentPlayingIndex++;
-            setTimeout(playVideo, 500);
+        if (event.data == YT.PlayerState.ENDED && !this.bStopped) {
+            //currentPlayingIndex++;
+            //setTimeout(playVideo, 500);
+            beatsbucketPlayer.stop();
+            beatsbucketPlayer.increasePlayIndex();
+            setTimeout(beatsbucketPlayer.play(), 500)
         }
     };
 
