@@ -32,7 +32,8 @@ var youtubeService = function() {
             //currentPlayingIndex++;
             //setTimeout(playVideo, 500);
             beatsbucketPlayer.stop();
-            beatsbucketPlayer.increasePlayIndex();
+            if(beatsbucketPlayer.getRepeatState() != "ONE")
+                beatsbucketPlayer.increasePlayIndex();
             setTimeout(beatsbucketPlayer.play(), 500)
         }
     };

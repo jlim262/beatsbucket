@@ -38,6 +38,23 @@ $(function() {
         beatsbucketPlayer.next();
     });
 
+    $("#beatsbucket .player-area .controls p .repeat").click(function() {
+        beatsbucketPlayer.repeat();
+        if(beatsbucketPlayer.getRepeatState() == "NONE")
+            $("#beatsbucket .player-area .controls p .repeat").html("Repeat");
+        else if(beatsbucketPlayer.getRepeatState() == "ONE")
+            $("#beatsbucket .player-area .controls p .repeat").html("[Repeat One]");
+        else if(beatsbucketPlayer.getRepeatState() == "ALL")
+            $("#beatsbucket .player-area .controls p .repeat").html("[Repeat All]");
+    });
+    $("#beatsbucket .player-area .controls p .shuffle").click(function() {
+        beatsbucketPlayer.shuffle();
+        if(beatsbucketPlayer.isShuffled())
+            $("#beatsbucket .player-area .controls p .shuffle").html("[Shuffle]");
+        else
+            $("#beatsbucket .player-area .controls p .shuffle").html("Shuffle");
+    });
+
     $("#beatsbucket .player-area .controls p .add").click(function() {
 
         //playList = searchedSongs.slice(0);
