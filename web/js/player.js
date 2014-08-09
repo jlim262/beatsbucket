@@ -2,7 +2,7 @@
 var player = function(youtubeService_p) {
     var youtubeService = youtubeService_p;
     var songList = []; //new playList();
-    var shuffledSongList = [];//new Arrays();
+    var playOrderList = [];//new Arrays();
     var currentPlayIndex = 0;
     var repeat = ["NONE", "ONE", "ALL"];
     var currentRepeatIndex = 0;
@@ -38,11 +38,7 @@ var player = function(youtubeService_p) {
             this.clear();
             youtubeService.bStopped = false;
 
-            var song;
-            if(shuffle)
-                song = shuffledSongList[currentPlayIndex];
-            else
-                song = songList[currentPlayIndex];
+            var song= songList[playOrderList[currentPlayIndex]];
 
             var songName = song.songName;
             var artist = '';
@@ -53,8 +49,7 @@ var player = function(youtubeService_p) {
 
             youtubeService.playVideo(songName + ' ' + artist);
 
-
-            $("#beatsbucket .player-area .playlist p:nth-child(" + (currentPlayIndex+1) + ")").css("color", "red");
+            $("#beatsbucket .player-area .playlist p:nth-child(" + (playOrderList[currentPlayIndex]+1) + ")").css("color", "red");
 
         } else {
             if(this.getRepeatState() == "ALL" && songList.length > 0) {
@@ -76,7 +71,7 @@ var player = function(youtubeService_p) {
     this.stop = function() {
         youtubeService.bStopped = true;
         youtubeService.stopVideo()
-        $("#beatsbucket .player-area .playlist p:nth-child(" + (currentPlayIndex+1) + ")").css("color", "black");
+        $("#beatsbucket .player-area .playlist p:nth-child(" + (playOrderList[currentPlayIndex]+1) + ")").css("color", "black");
     }
 
     this.pause = function() {
@@ -108,46 +103,34 @@ var player = function(youtubeService_p) {
 
     this.shuffle = function() {
         shuffle = ~shuffle;
-        shuffledSongList = [];
+        
+        var len = songList.length;
         if(shuffle) {
-            var len = songList.length;
+            playOrderList = [];
             for (var i = 0; i < len; i++) {
-                shuffledSongList.push(songList[i]);
+                playOrderList.push(i);
             }
             for (var i = 0; i < len; i++) {
                 var rand = Math.floor(Math.random() * len);
-                var temp = shuffledSongList[i];
-                shuffledSongList[i] = shuffledSongList[rand];
-                shuffledSongList[rand] = temp;
+                var temp = playOrderList[i];
+                playOrderList[i] = playOrderList[rand];
+                playOrderList[rand] = temp;
             }
-
-            $("#beatsbucket .player-area .playlist .title").remove();
-            $.each(shuffledSongList, function(i, songItem) {
-                
-                var artist = '';
-                $.each(songItem.artists.artist, function(j, artistItem) {
-                    artist += artistItem.artistName;
-                    artist += ' ';
-                });
-                $("#beatsbucket .player-area .playlist").append('<p class="title">' + songItem.songName + ' - ' + artist + "</p>");
-            });
-        } else {
-            
-            
-            var len = songList.length;
             for (var i = 0; i < len; i++) {
-                shuffledSongList.push(songList[i]);
+                if(playOrderList[i] == currentPlayIndex) {
+                    var temp = playOrderList[0];
+                    playOrderList[0] = playOrderList[i];
+                    playOrderList[i] = temp;
+                    break;
+                }
             }
-            $("#beatsbucket .player-area .playlist .title").remove();
-            $.each(songList, function(i, songItem) {
-
-                var artist = '';
-                $.each(songItem.artists.artist, function(j, artistItem) {
-                    artist += artistItem.artistName;
-                    artist += ' ';
-                });
-                $("#beatsbucket .player-area .playlist").append('<p class="title">' + songItem.songName + ' - ' + artist + "</p>");
-            });
+            currentPlayIndex = 0;
+        } else {
+            currentPlayIndex = playOrderList[currentPlayIndex];
+            playOrderList = [];
+            for (var i = 0; i < len; i++) {
+                playOrderList.push(i);
+            }
         }
     }
 
@@ -158,7 +141,8 @@ var player = function(youtubeService_p) {
             songList.push(song_p);
 
 
-        shuffledSongList.push(songList.length-1);
+        // TODO should consider shuffle case
+        playOrderList.push(songList.length-1);
 
     }
 
@@ -168,7 +152,7 @@ var player = function(youtubeService_p) {
 
     this.clearPlayList = function() {
         songList = [];
-        shuffledSongList = [];
+        playOrderList = [];
         currentPlayIndex = 0;
         this.stop();
     }
