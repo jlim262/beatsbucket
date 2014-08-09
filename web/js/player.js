@@ -103,7 +103,7 @@ var player = function(youtubeService_p) {
 
     this.shuffle = function() {
         shuffle = ~shuffle;
-        
+
         var len = songList.length;
         if(shuffle) {
             playOrderList = [];

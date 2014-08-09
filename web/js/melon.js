@@ -111,15 +111,18 @@ var melonService = function(beatsbucketPlayer_p) {
                                     }))
 
                                 )
-                                .append($('<td>').append(albumName))
-                                .append($('<td>').append(songName))
-                                .append($('<td>').append(artist))
+                                .append($('<td>')
+                                    .append($('<tr class="songTitle">').append(albumName))
+                                    .append($('<tr class="songName">').append(songName + ' - ' + artist))
+                                )
+
                                 .append($('<td>', {
                                     class: "addToPlayList",
                                     click: function() {
                                         addToPlaylist(i);
                                     }
-                                }).append('+'))
+                                }).append($('<span class="plusButton">').append('+'))
+                                )
                             )
 
                     });

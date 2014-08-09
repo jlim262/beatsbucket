@@ -81,7 +81,7 @@ $(function() {
     $("#beatsbucket .player-area .controls .playlist p").click(function() {
     });
 
-    $("#beatsbucket .contents-area .chart-area #realtime").click(function() {
+    $("#beatsbucket .contents-area .chart-area .realtime").click(function() {
         currentChartType = 'realtime';
         melonService.getRealtimeChart(currentChartType, 1, defaultLoadCount);
     });
@@ -91,12 +91,12 @@ $(function() {
         melonService.getRealtimeChart(currentChartType, 1, defaultLoadCount);
     });
 
-    $("#today_top_song").click(function() {
+    $("#beatsbucket .contents-area .chart-area .today_top_song").click(function() {
         currentChartType = 'todayTopSong';
         melonService.getRealtimeChart(currentChartType, 1, defaultLoadCount);
     });
 
-    $("#top_genres").click(function() {
+    $("#beatsbucket .contents-area .chart-area .top_genres").click(function() {
         currentChartType = 'topGenres';
         melonService.getRealtimeChart(currentChartType, 1, defaultLoadCount);
     });

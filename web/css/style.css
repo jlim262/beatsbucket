@@ -1,7 +1,9 @@
 
-body {
+html, body {
     font-size: 12px;
     font-family: dotum;
+    overflow: hidden;
+    height:100%;
 }
 
 header#page_header {
@@ -31,11 +33,40 @@ header#page_header nav ul {
 
 #beatsbucket > .contents-area{
     position:absolute;
+    overflow: scroll;
     top:0;
-    left:0;
-    right:360px;
+    /*left:0;*/
+    right:380px;
+
+    width:380px;
+
     height:100%;
 }
+
+#beatsbucket .chart-area .button{
+    font-size: 12px;
+    cursor: pointer;
+    color: darkslateblue;
+    font-weight: bold;
+}
+
+#beatsbucket .contents-area .songTitle {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+#beatsbucket .contents-area .plusButton {
+    font-size: 24px;
+    text-align: center;
+    cursor: pointer;
+    color: steelblue;
+
+}
+
+.plusButton:hover {
+    font-weight: bold;
+}
+
 
 #beatsbucket > .player-area{
     position:absolute;
@@ -43,6 +74,21 @@ header#page_header nav ul {
     right:0;
     width:360px;
     height:100%;
+}
+
+#beatsbucket .player-area .playlist {
+    overflow: scroll;
+    height:100%;
+}
+
+#beatsbucket .player-area .controls .buttons{
+    font-size: 14px;
+    cursor: pointer;
+    color: firebrick;
+}
+
+.controls .buttons:hover {
+    font-weight: bold;
 }
 
 #beatsbucket .player-area .ytplayer {

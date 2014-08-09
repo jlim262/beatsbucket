@@ -21,16 +21,19 @@
 
 <div id="beatsbucket">
 
+    <div class="">
+
+    </div>
 
 
     <div class="contents-area">
         <div class="chart-area">
             <nav>
-                <ul id="chart">
-                    <li id="realtime">실시간</li>
-                    <li id="today_top_song">일간차트</li>
+                <ul class="chart">
+                    <li class="realtime button">Realtime Top100</li>
+                    <li class="today_top_song button">Today Top100</li>
                     <%--<li id="top_album">앨범차트</li>--%>
-                    <li id="top_genres">장르차트(가요)</li>
+                    <li class="top_genres button">Genres Top100</li>
                     <%--<li id="new_song">최신곡</li>--%>
                     <%--<li id="new_album">최신앨범</li>--%>
                 </ul>
@@ -51,16 +54,16 @@
         <div class="controls">
             <p>Controls</p>
             <p>
-                <span class="prev">Prev</span>
-                <span class="play">Play</span>
-                <span class="stop">Stop</span>
-                <span class="next">Next</span>
-                <span class="repeat">Repeat</span>
-                <span class="shuffle">Shuffle</span>
+                <span class="prev buttons">Prev</span>
+                <span class="play buttons">Play</span>
+                <span class="stop buttons">Stop</span>
+                <span class="next buttons">Next</span>
+                <span class="repeat buttons">Repeat</span>
+                <span class="shuffle buttons">Shuffle</span>
             </p>
             <p>
-                <span class="add">AddAll</span>
-                <span class="clear">Clear</span>
+                <span class="add buttons">AddAll</span>
+                <span class="clear buttons">Clear</span>
             </p>
         </div>
         <div class="playlist">
