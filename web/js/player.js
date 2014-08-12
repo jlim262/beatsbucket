@@ -21,7 +21,7 @@ var player = function(youtubeService_p) {
     }
 
     this.increasePlayIndex = function() {
-        if (currentPlayIndex < songList.length-1)
+        if (currentPlayIndex < songList.length)
             currentPlayIndex++;
     }
 
