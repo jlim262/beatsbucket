@@ -68,7 +68,13 @@ $(function() {
                 artist += artistItem.artistName;
                 artist += ' ';
             });
-            $("#beatsbucket .player-area .playlist").append('<p class="title">' + songItem.songName + ' - ' + artist + "</p>");
+            $("#beatsbucket .player-area .playlist").append($('<p>', {
+                class:"title",
+                click:function(){
+                    beatsbucketPlayer.setCurrentPlayIndex(i);
+                    beatsbucketPlayer.play();
+                }
+            }).append(songItem.songName + ' - ' + artist));
         });
 
     });
@@ -78,7 +84,9 @@ $(function() {
         beatsbucketPlayer.clearPlayList();
     });
 
-    $("#beatsbucket .player-area .controls .playlist p").click(function() {
+    $("#beatsbucket .player-area .playlist p").click(function() {
+//        var str = $(this).text();
+        alert("aa");
     });
 
     $("#beatsbucket .contents-area .chart-area .realtime").click(function() {

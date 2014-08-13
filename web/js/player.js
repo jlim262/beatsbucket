@@ -20,6 +20,22 @@ var player = function(youtubeService_p) {
         return shuffle;
     }
 
+    this.setCurrentPlayIndex = function(idx) {
+        // TODO should be moved to ui manager
+        $("#beatsbucket .player-area .playlist p:nth-child(" + (playOrderList[currentPlayIndex]+1) + ")").css("color", "black");
+        if(shuffle) {
+            for(var i=0; i<playOrderList.length; i++) {
+                if(idx == playOrderList[i]) {
+                    currentPlayIndex = i;
+                    break;
+                }
+            }
+
+        } else {
+            currentPlayIndex = idx;
+        }
+
+    }
     this.increasePlayIndex = function() {
         if (currentPlayIndex < songList.length)
             currentPlayIndex++;
