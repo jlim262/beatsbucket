@@ -41,7 +41,7 @@ var youtubeService = function() {
     var getytVideoId = function(query_p, callback_p) {
         $.ajax({
             type : "GET",
-            url : "http://gdata.youtube.com/feeds/api/videos?",
+            url : "http://gdata.youtube.com/feeds/api/videos/-/%7Bhttp%3A%2F%2Fgdata.youtube.com%2Fschemas%2F2007%2Fcategories.cat%7DMusic?",
             dataType : "jsonp",
             data : {
                 q : query_p,
