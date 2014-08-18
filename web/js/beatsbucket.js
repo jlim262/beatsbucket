@@ -19,6 +19,11 @@ $(function() {
     var currentChartType;
     var defaultLoadCount = 100;
 
+    //$("#beatsbucket .player-area .playlist").mousedown(function(e) {
+
+        //alert(e.which);
+    //});
+
     $("#beatsbucket .player-area .controls p .play").click(function() {
         if (beatsbucketPlayer) {
             beatsbucketPlayer.play();

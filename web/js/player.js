@@ -8,6 +8,8 @@ var player = function(youtubeService_p) {
     var currentRepeatIndex = 0;
     var shuffle = false;
 
+
+
     this.isStopped = function() {
         return youtubeService.bStopped;
     }

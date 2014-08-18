@@ -6,6 +6,35 @@ html, body {
     height:100%;
 }
 
+#beatsbucket .contents-area {
+    position: absolute;
+    float: right;
+    right:380px;
+    width:760px;
+}
+
+#beatsbucket .contents-area .chart-area {
+
+    width: 100%;
+    height:30px;
+}
+
+#beatsbucket .contents-area .extra-info {
+    float: right;
+
+    height: 500px;
+    width:380px;
+}
+
+#beatsbucket .contents-area .search-result {
+    float: right;
+
+    overflow: scroll;
+    right: 380px;
+    height: 500px;
+    width: 380px;
+}
+
 header#page_header {
 	width: 960px;
 }
@@ -26,22 +55,8 @@ header#page_header nav ul {
 	display: inline;
 }
 
-#result_content {
-	float: left;
-	width: 640px;
-}
 
-#beatsbucket > .contents-area{
-    position:absolute;
-    overflow: scroll;
-    top:0;
-    /*left:0;*/
-    right:380px;
 
-    width:380px;
-
-    height:100%;
-}
 
 #beatsbucket .chart-area .button{
     font-size: 12px;
@@ -70,6 +85,7 @@ header#page_header nav ul {
 
 #beatsbucket > .player-area{
     position:absolute;
+    float: right;
     top:0;
     right:0;
     width:360px;
@@ -78,7 +94,18 @@ header#page_header nav ul {
 
 #beatsbucket .player-area .playlist {
     overflow: scroll;
-    height:100%;
+    height:200px;
+    border: 1px solid;
+}
+
+#beatsbucket .player-area .playlist p {
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+}
+
+#beatsbucket .player-area .playlist p:hover {
+    font-weight: bold;
 }
 
 #beatsbucket .player-area .controls .buttons{

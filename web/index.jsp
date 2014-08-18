@@ -21,38 +21,11 @@
 
 <div id="beatsbucket">
 
-    <div class="">
-
-    </div>
-
-
-    <div class="contents-area">
-        <div class="chart-area">
-            <nav>
-                <ul class="chart">
-                    <li class="realtime button">Realtime Top100</li>
-                    <li class="today_top_song button">Today Top100</li>
-                    <%--<li id="top_album">앨범차트</li>--%>
-                    <li class="top_genres button">Genres Top100</li>
-                    <%--<li id="new_song">최신곡</li>--%>
-                    <%--<li id="new_album">최신앨범</li>--%>
-                </ul>
-            </nav>
-        </div>
-
-        <div class="search-result">
-            <table></table>
-        </div>
-
-    </div>
-
     <div class="player-area">
         <div class="screen">
-            <p>Screen</p>
             <div id="ytplayer"></div>
         </div>
         <div class="controls">
-            <p>Controls</p>
             <p>
                 <span class="prev buttons">Prev</span>
                 <span class="play buttons">Play</span>
@@ -72,6 +45,38 @@
 
 
     </div>
+
+
+    <div class="contents-area">
+
+        <div class="chart-area">
+            <nav>
+                <ul class="chart">
+                    <li class="realtime button">Realtime Top100</li>
+                    <li class="today_top_song button">Today Top100</li>
+                    <%--<li id="top_album">앨범차트</li>--%>
+                    <li class="top_genres button">Genres Top100</li>
+                    <%--<li id="new_song">최신곡</li>--%>
+                    <%--<li id="new_album">최신앨범</li>--%>
+                </ul>
+            </nav>
+        </div>
+
+        <div class="search-result">
+            <table></table>
+        </div>
+
+        <div class="extra-info">
+
+        </div>
+
+
+
+
+
+    </div>
+
+
 
 </div>
 
