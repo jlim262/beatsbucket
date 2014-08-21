@@ -40,6 +40,105 @@ var melonService = function(beatsbucketPlayer_p) {
         return searchedSongs;
     }
 
+     var searchAlbum = function(keyword_p, page_p, count_p) {
+
+        var subUrl = "/albums?";
+
+        $.ajax({
+            url : melonUrl + subUrl,
+            dataType : "json",
+            data : {
+                version : melonAPIVersion,
+                page : page_p,
+                count : count_p,
+                searchKeyword : keyword_p,
+                appKey : appKey
+            },
+            success : function(response) {
+                $.each(response.melon.albums.album, function(i, albumItem) {
+                    alert(albumItem.albumName);
+                });
+
+            }
+        });
+    }
+
+    this.getMelonDjMain = function() {
+
+        var subUrl = "/melondj?";
+
+        $.ajax({
+            url : melonUrl + subUrl,
+            dataType : "json",
+            data : {
+                version : melonAPIVersion,
+                appKey : appKey
+            },
+            success : function(response) {
+                $.each(response.melon.categories.category, function(i, categoryItem) {
+                    categoryItem.categoryId;
+                    categoryItem.categoryName;
+
+                });
+
+            }
+        });
+    }
+
+    this.getMelonDjCategoryInfo = function(categoryId_p, page_p, count_p) {
+
+        var subUrl = "/" + categoryId + "?";
+
+        $.ajax({
+            url : melonUrl + subUrl,
+            dataType : "json",
+            data : {
+                version : melonAPIVersion,
+                page : page_p,
+                count : count_p,
+                appKey : appKey
+            },
+            success : function(response) {
+                $.each(response.melon.subCategories.subCategory, function(i, subCategoryItem) {
+                    subCategoryItem.offeringId;
+                    subCategoryItem.categoryId;
+                    subCategoryItem.offeringTitle;
+
+                    if (subCategoryItem.secondCategoryUse == "true") {
+                        $.each(response.melon.secondCategories.secondCategory, function(i, secondCategoryItem) {
+                            secondCategoryItem.categoryId;
+                            secondCategoryItem.categoryName;
+                        });
+                    }
+
+                });
+
+            }
+        });
+    }
+
+    this.getMelonDjchart = function(categoryId_p, offeringId_p, page_p, count_p) {
+
+        var subUrl = "/melondj/categories/" + categoryId_p + "/offerings/" + offeringId_p + "?";
+
+        $.ajax({
+            url : melonUrl + subUrl,
+            dataType : "json",
+            data : {
+                page : page_p,
+                count : count_p,
+                version : melonAPIVersion,
+                appKey : appKey
+            },
+            success : function(response) {
+                $.each(response.melon.songs.song, function(i, songItem) {
+
+                });
+
+            }
+        });
+    }
+
     this.getRealtimeChart = function(chartType_p, page_p, count_p) {
         currentPage = page_p;
         var subUrl;
@@ -95,6 +194,7 @@ var melonService = function(beatsbucketPlayer_p) {
                             artist += ' ';
                         });
 
+                        //var searchFunction = this.searchAlbum;
                         $("#beatsbucket .contents-area .search-result table")
                             .append($('<tr>')
                                 .append($('<td>')
@@ -104,10 +204,14 @@ var melonService = function(beatsbucketPlayer_p) {
                                         width: 50,
                                         height: 50,
                                         alt: songName + ' ' + artist,
-                                        title: songName//,
-                                        //click: function() {
+                                        title: songName,
+                                        click: function() {
+
+                                            //searchFunction(albumName, 1, 1);
+
+                                            searchAlbum(albumName, 1, 1);
                                             //addytVideoId($(this).attr('alt'));
-                                        //}
+                                        }
                                     }))
 
                                 )

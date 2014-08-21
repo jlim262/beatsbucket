@@ -15,6 +15,9 @@ var youtubeService = function() {
             height: '240',
             width: '320',
             videoId: 'Wa5B22KAkEk',
+            playerVars: {
+                'controls' : 0  // hide controls
+            },
             events: {
                 'onReady': onPlayerReady,
                 'onStateChange': onPlayerStateChange
@@ -23,7 +26,7 @@ var youtubeService = function() {
     };
 
     function onPlayerReady(event) {
-        event.target.setPlaybackQuality("small");
+        event.target.setPlaybackQuality("default");
         event.target.setVolume(50);
     };
 
