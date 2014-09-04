@@ -24,7 +24,7 @@ $(function() {
         //alert(e.which);
     //});
 
-    $("#beatsbucket .player-area .controls p .play").click(function() {
+    $("#beatsbucket .player-area .player_controls .btn_play").click(function() {
         if (beatsbucketPlayer) {
             beatsbucketPlayer.play();
         } else {
@@ -32,35 +32,35 @@ $(function() {
         }
     });
 
-    $("#beatsbucket .player-area .controls p .stop").click(function() {
+    $("#beatsbucket .player-area .player_controls .btn_stop").click(function() {
         beatsbucketPlayer.stop();
     });
 
-    $("#beatsbucket .player-area .controls p .prev").click(function() {
+    $("#beatsbucket .player-area .player_controls .btn_prev").click(function() {
         beatsbucketPlayer.prev();
     });
-    $("#beatsbucket .player-area .controls p .next").click(function() {
+    $("#beatsbucket .player-area .player_controls .btn_next").click(function() {
         beatsbucketPlayer.next();
     });
 
-    $("#beatsbucket .player-area .controls p .repeat").click(function() {
+    $("#beatsbucket .player-area .player_controls .btn_repeat").click(function() {
         beatsbucketPlayer.repeat();
         if(beatsbucketPlayer.getRepeatState() == "NONE")
-            $("#beatsbucket .player-area .controls p .repeat").html("Repeat");
+            $("#beatsbucket .player-area .player_controls .btn_repeat").html("Repeat");
         else if(beatsbucketPlayer.getRepeatState() == "ONE")
-            $("#beatsbucket .player-area .controls p .repeat").html("[Repeat One]");
+            $("#beatsbucket .player-area .player_controls .btn_repeat").html("[Repeat One]");
         else if(beatsbucketPlayer.getRepeatState() == "ALL")
-            $("#beatsbucket .player-area .controls p .repeat").html("[Repeat All]");
+            $("#beatsbucket .player-area .player_controls .btn_repeat").html("[Repeat All]");
     });
-    $("#beatsbucket .player-area .controls p .shuffle").click(function() {
+    $("#beatsbucket .player-area .player_controls .btn_shuffle").click(function() {
         beatsbucketPlayer.shuffle();
         if(beatsbucketPlayer.isShuffled())
-            $("#beatsbucket .player-area .controls p .shuffle").html("[Shuffle]");
+            $("#beatsbucket .player-area .player_controls .btn_shuffle").html("[Shuffle]");
         else
-            $("#beatsbucket .player-area .controls p .shuffle").html("Shuffle");
+            $("#beatsbucket .player-area .player_controls .btn_shuffle").html("Shuffle");
     });
 
-    $("#beatsbucket .player-area .controls p .add").click(function() {
+    $("#beatsbucket .player-area .playlist_controls .btn_add").click(function() {
 
         //playList = searchedSongs.slice(0);
         var songs = melonService.getSearchedSongs();//searchedSongs.slice(0);
@@ -84,7 +84,7 @@ $(function() {
 
     });
 
-    $("#beatsbucket .player-area .controls p .clear").click(function() {
+    $("#beatsbucket .player-area .playlist_controls .btn_clear").click(function() {
         $("#beatsbucket .player-area .playlist .title").remove();
         beatsbucketPlayer.clearPlayList();
     });

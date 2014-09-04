@@ -2,99 +2,37 @@
 html, body {
     font-size: 12px;
     font-family: dotum;
-    overflow: hidden;
+    /*overflow: hidden;*/
     height:100%;
+    margin: 0px;
 }
 
-#beatsbucket .contents-area {
+#beatsbucket .player-area {
     position: absolute;
     float: right;
-    right:380px;
-    width:760px;
+    top: 0px;
+    right: 30px;
+    width: 360px;
+    height: 574px;
+    background-color: aliceblue;
+    border: 1px solid palevioletred;
 }
 
-#beatsbucket .contents-area .chart-area {
+#beatsbucket .player-area .ytplayer {
+    width: 320px;
+}
 
+#beatsbucket .player-area .player_controls table {
     width: 100%;
-    height:30px;
-}
-
-#beatsbucket .contents-area .extra-info {
-    float: right;
-
-    height: 500px;
-    width:380px;
-}
-
-#beatsbucket .contents-area .search-result {
-    float: right;
-
-    overflow: scroll;
-    right: 380px;
-    height: 500px;
-    width: 380px;
-}
-
-header#page_header {
-	width: 960px;
-}
-
-#search_bar {
-	width: 640px;
-}
-
-header#page_header nav ul {
-	list-style: none;
-	margin: 0;
-	padding: 0;
-}
-
-#beatsbucket .contents-area .chart-area nav ul li {
-	padding: 0;
-	margin: 0 20px 0 0;
-	display: inline;
-}
-
-
-
-
-#beatsbucket .chart-area .button{
-    font-size: 12px;
-    cursor: pointer;
-    color: darkslateblue;
-    font-weight: bold;
-}
-
-#beatsbucket .contents-area .songTitle {
-    font-size: 14px;
-    font-weight: bold;
-}
-
-#beatsbucket .contents-area .plusButton {
-    font-size: 24px;
     text-align: center;
+    font-size: 14px;
     cursor: pointer;
-    color: steelblue;
-
-}
-
-.plusButton:hover {
-    font-weight: bold;
-}
-
-
-#beatsbucket > .player-area{
-    position:absolute;
-    float: right;
-    top:0;
-    right:0;
-    width:360px;
-    height:100%;
+    color: firebrick;
 }
 
 #beatsbucket .player-area .playlist {
     overflow: scroll;
-    height:200px;
+    height:280px;
     border: 1px solid;
 }
 
@@ -118,12 +56,106 @@ header#page_header nav ul {
     font-weight: bold;
 }
 
-#beatsbucket .player-area .ytplayer {
-    width: 320px;
+#beatsbucket .player-area .playlist_controls table {
+    width: 100%;
+    text-align: center;
+    font-size: 14px;
+    cursor: pointer;
+    color: firebrick;
 }
 
-/*
-#ytplayer {
-    width: 320px;
+#beatsbucket .player-area .buttons:hover {
+    color: red;
 }
-*/
+
+#beatsbucket .contents-area {
+    position: absolute;
+    top: 0px;
+    float: right;
+    right:400px;
+    width:760px;
+
+}
+
+#beatsbucket .contents-area .header-area {
+    width: 100%;
+    height: 50px;
+    border: 1px solid palevioletred;
+}
+
+#beatsbucket .contents-area .header-area span {
+    font-size: 40px;
+    font-family: Impact, Charcoal, sans-serif;
+    font-weight: bold;
+}
+
+#beatsbucket .contents-area .body-area {
+    width: 100%;
+    /*height: 50px;*/
+    padding: 0;
+    margin: 0;
+    border: 1px solid black;
+}
+
+
+
+#beatsbucket .contents-area .chart-area {
+    width: 100%;
+    height:30px;
+    border: 1px solid palevioletred;
+}
+
+#beatsbucket .contents-area .chart-area nav ul li {
+    padding: 0;
+    margin: 0 20px 0 0;
+    display: inline;
+}
+
+#beatsbucket .contents-area .chart-area .button{
+    font-size: 12px;
+    cursor: pointer;
+    color: darkslateblue;
+    font-weight: bold;
+}
+
+#beatsbucket .contents-area .body-area .side-menu-area {
+    /*float: left;*/
+    height: 430px;
+    width: 160px;
+    border: 1px solid palevioletred;
+}
+
+#beatsbucket .contents-area .body-area .search-result {
+    /*float: left;*/
+    overflow: scroll;
+    height: 430px;
+    width: 600px;
+    background-color: aliceblue;
+    border: 1px solid palevioletred;
+}
+
+#beatsbucket .contents-area .search-result .songTitle {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+#beatsbucket .contents-area .search-result .plusButton {
+    font-size: 24px;
+    text-align: center;
+    cursor: pointer;
+    color: steelblue;
+}
+
+#beatsbucket .contents-area .search-result .plusButton:hover {
+    font-weight: bold;
+}
+
+#beatsbucket .contents-area .footer-area {
+    width: 100%;
+    height: 50px;
+    border: 1px solid dodgerblue;
+}
+
+#beatsbucket .contents-area .footer-area span {
+    float: right;
+}

@@ -25,30 +25,29 @@
         <div class="screen">
             <div id="ytplayer"></div>
         </div>
-        <div class="controls">
-            <p>
-                <span class="prev buttons">Prev</span>
-                <span class="play buttons">Play</span>
-                <span class="stop buttons">Stop</span>
-                <span class="next buttons">Next</span>
-                <span class="repeat buttons">Repeat</span>
-                <span class="shuffle buttons">Shuffle</span>
-            </p>
-            <p>
-                <span class="add buttons">AddAll</span>
-                <span class="clear buttons">Clear</span>
-            </p>
+        <div class="player_controls">
+            <table>
+                <td class="btn_prev buttons">Prev</td>
+                <td class="btn_play buttons">Play</td>
+                <td class="btn_stop buttons">Stop</td>
+                <td class="btn_next buttons">Next</td>
+                <td class="btn_repeat buttons">Repeat</td>
+                <td class="btn_shuffle buttons">Shuffle</td>
+            </table>
         </div>
-        <div class="playlist">
-
+        <div class="playlist"></div>
+        <div class="playlist_controls">
+            <table>
+                <td class="btn_add buttons">Add All</td>
+                <td class="btn_clear buttons">Clear</td>
+            </table>
         </div>
-
-
     </div>
 
-
     <div class="contents-area">
-
+        <div class="header-area">
+            <span>BeatsBucket</span>
+        </div>
         <div class="chart-area">
             <nav>
                 <ul class="chart">
@@ -61,18 +60,25 @@
                 </ul>
             </nav>
         </div>
-
-        <div class="search-result">
-            <table></table>
+        <div class="body-area">
+            <table>
+                <td class="side-menu-area"></td>
+                <td>
+                    <div class="search-result">
+                        <table></table>
+                    </div>
+                </td>
+            </table>
+            <%--<div class="side-menu-area"></div>--%>
+            <%--<div class="search-result">--%>
+                <%--<table></table>--%>
+            <%--</div>--%>
         </div>
 
-        <div class="extra-info">
 
+        <div class="footer-area">
+            <span>BeatsBucket for simple and free music service</span>
         </div>
-
-
-
-
 
     </div>
 

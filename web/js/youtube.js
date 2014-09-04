@@ -13,7 +13,7 @@ var youtubeService = function() {
     this.onReady = function() {
         ytplayer = new YT.Player('ytplayer', {
             height: '240',
-            width: '320',
+            width: '360',
             videoId: 'Wa5B22KAkEk',
             playerVars: {
                 'controls' : 0  // hide controls
@@ -44,7 +44,7 @@ var youtubeService = function() {
     var getytVideoId = function(query_p, callback_p) {
         $.ajax({
             type : "GET",
-            url : "http://gdata.youtube.com/feeds/api/videos/-/%7Bhttp%3A%2F%2Fgdata.youtube.com%2Fschemas%2F2007%2Fcategories.cat%7DMusic?",
+            url : "http://gdata.youtube.com/feeds/api/videos?",
             dataType : "jsonp",
             data : {
                 q : query_p,
