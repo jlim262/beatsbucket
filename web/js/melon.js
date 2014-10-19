@@ -21,7 +21,7 @@ var melonService = function(beatsbucketPlayer_p) {
             artist += item_j.artistName;
             artist += ' ';
         });
-        $("#beatsbucket .player-area .playlist").append('<p class="title">' + s.songName + ' - ' +artist + "</p>");
+        $("#beatsbucket .player-area .playlist").append('<p class="title">' + s.songName + ' - ' +artist + "</p`>");
     }
 
     var getImageSubUrl = function(albumId) {
@@ -183,6 +183,33 @@ var melonService = function(beatsbucketPlayer_p) {
                     $("#beatsbucket .contents-area .search-result table").empty();
                     searchedSongs = [];
 
+                    //$("#searchResultTmpl").tmpl(response.melon.songs).appendTo("#test_area");
+                    var movies = [
+                        { Name: "The Red Violin", ReleaseYear: "1998", Director: "François Girard" },
+                        { Name: "Eyes Wide Shut", ReleaseYear: "1999", Director: "Stanley Kubrick" },
+                        { Name: "The Inheritance", ReleaseYear: "1976", Director: "Mauro Bolognini" }
+                    ];
+                    //$("#searchResultTmpl").tmpl(movies).appendTo("#test_area");
+                    $.template(
+                        "detailTemplate",
+                        "<tr>" +
+                            "<td colspan='2'>${songName}</td>" +
+                            "<td>Released: ${ReleaseYear}</td>" +
+                            "<td>Director: ${Director}</td>" +
+                            "</tr>"
+                    );
+                    $.template(
+                        "searchedSong",
+                        "<tr>" +
+                            "<td>${albumName}</td>" +
+//                                "<tr class='songTitle'>${albumName}</tr>" +
+//                                "<tr class='songName'>${songName}</tr>" +
+                            "<td>${songName}</td>" +
+                            "<td class='addToPlayList'><span class='plusButton'>+</span></td>" +
+                        "</tr>"
+                    );
+                    $.tmpl( "searchedSong", response.melon.songs.song ).appendTo( "#test_area" );
+
                     $.each(response.melon.songs.song, function(i, songItem) {
                         searchedSongs.push(songItem);
 
@@ -194,8 +221,11 @@ var melonService = function(beatsbucketPlayer_p) {
                             artist += ' ';
                         });
 
+                        //var songJson = JSON.stringify(songItem);
+                        //$("#searchResultTmpl").tmpl(songItem).appendTo("#test_area");
+
                         //var searchFunction = this.searchAlbum;
-                        $("#beatsbucket .contents-area .search-result table")
+                        /*$("#beatsbucket .contents-area .search-result table")
                             .append($('<tr>')
                                 .append($('<td>')
 
@@ -227,7 +257,7 @@ var melonService = function(beatsbucketPlayer_p) {
                                     }
                                 }).append($('<span class="plusButton">').append('+'))
                                 )
-                            )
+                            )*/
 
                     });
                 } else if ([ 'topAlbum', 'newAlbum' ].indexOf(chartType_p) > -1) {
