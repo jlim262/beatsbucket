@@ -208,7 +208,7 @@ var melonService = function(beatsbucketPlayer_p) {
                             "<td class='addToPlayList'><span class='plusButton'>+</span></td>" +
                         "</tr>"
                     );
-                    $.tmpl( "searchedSong", response.melon.songs.song ).appendTo( "#test_area" );
+                    $.tmpl( "searchedSong", response.melon.songs.song ).appendTo( ".search-result" );
 
                     $.each(response.melon.songs.song, function(i, songItem) {
                         searchedSongs.push(songItem);
