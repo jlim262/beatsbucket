@@ -159,3 +159,25 @@ html, body {
 #beatsbucket .contents-area .footer-area span {
     float: right;
 }
+
+.media-line{
+    background-color : inherit;
+}
+
+.media-line:hover{
+    background-color : #FFFFFF;
+}
+
+.media-line td {
+    padding : 10px;
+    border-bottom : solid 1px #CCCCCC;
+}
+
+.media-line .song_name {
+
+}
+
+.media-line .singer {
+    font-size: 8pt;
+    color : #CCCCCC;
+}
