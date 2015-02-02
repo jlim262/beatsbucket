@@ -9,6 +9,9 @@
           href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css"/>
     <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
     <script type="text/javascript" src="/lib/jquery.tmpl.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
     <!--script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js"></script-->
     <script src="http://www.google.com/jsapi" type="text/javascript"></script>
     <script type="text/javascript" src="/js/youtube.js"></script>
@@ -29,19 +32,19 @@
         </div>
         <div class="player_controls">
             <table>
-                <td class="btn_prev buttons">Prev</td>
-                <td class="btn_play buttons">Play</td>
-                <td class="btn_stop buttons">Stop</td>
-                <td class="btn_next buttons">Next</td>
-                <td class="btn_repeat buttons">Repeat</td>
-                <td class="btn_shuffle buttons">Shuffle</td>
+                <td class="btn_prev buttons"><span class="glyphicon glyphicon-step-backward" aria-hidden="true"></span></td>
+                <td class="btn_play buttons"><span class="glyphicon glyphicon-play" aria-hidden="true"></span></td>
+                <td class="btn_stop buttons"><span class="glyphicon glyphicon-stop" aria-hidden="true"></span></td>
+                <td class="btn_next buttons"><span class="glyphicon glyphicon-step-forward" aria-hidden="true"></span></td>
+                <td class="btn_repeat buttons"><span class="glyphicon glyphicon-retweet" aria-hidden="true"></span></td>
+                <td class="btn_shuffle buttons"><span class="glyphicon glyphicon-random" aria-hidden="true"></span></td>
             </table>
         </div>
         <div class="playlist"></div>
         <div class="playlist_controls">
             <table>
-                <td class="btn_add buttons">Add All</td>
-                <td class="btn_clear buttons">Clear</td>
+                <td class="btn_add buttons" width="50%"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>All</td>
+                <td class="btn_clear buttons" width="50%"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></td>
             </table>
         </div>
     </div>

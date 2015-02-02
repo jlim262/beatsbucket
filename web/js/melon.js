@@ -200,12 +200,12 @@ var melonService = function(beatsbucketPlayer_p) {
                     );
                     $.template(
                         "searchedSong",
-                        "<tr>" +
-                            "<td>${albumName}</td>" +
+                        "<tr class='media-line'>" +
+                            "<td class='song_name'>${albumName}</td>" +
 //                                "<tr class='songTitle'>${albumName}</tr>" +
 //                                "<tr class='songName'>${songName}</tr>" +
-                            "<td>${songName}</td>" +
-                            "<td class='addToPlayList'><span class='plusButton'>+</span></td>" +
+                            "<td class='singer'>${songName}</td>" +
+                            "<td class='addToPlayList'><button class='btn btn-xs btn-danger'><span class='glyphicon glyphicon-plus' aria-hidden='true'></span></button></td>" +
                         "</tr>"
                     );
                     $.tmpl( "searchedSong", response.melon.songs.song ).appendTo( ".search-result" );
