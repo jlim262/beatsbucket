@@ -45,19 +45,46 @@ $(function() {
 
     $("#beatsbucket .player-area .player_controls .btn_repeat").click(function() {
         beatsbucketPlayer.repeat();
-        if(beatsbucketPlayer.getRepeatState() == "NONE")
-            $("#beatsbucket .player-area .player_controls .btn_repeat").html("Repeat");
-        else if(beatsbucketPlayer.getRepeatState() == "ONE")
-            $("#beatsbucket .player-area .player_controls .btn_repeat").html("[Repeat One]");
-        else if(beatsbucketPlayer.getRepeatState() == "ALL")
-            $("#beatsbucket .player-area .player_controls .btn_repeat").html("[Repeat All]");
+        if(beatsbucketPlayer.getRepeatState() == "NONE") {
+            $("#beatsbucket .player-area .player_controls .btn_repeat").css('color', 'gray');
+            $("#beatsbucket .player-area .player_controls .btn_repeat").hover(function() {
+                $(this).css('color', 'darkgray')
+            }, function() {
+                $(this).css('color', 'gray')
+            });
+        } else if(beatsbucketPlayer.getRepeatState() == "ONE") {
+            $("#beatsbucket .player-area .player_controls .btn_repeat").css('color', 'blue');
+            $("#beatsbucket .player-area .player_controls .btn_repeat").hover(function() {
+                $(this).css('color', 'darkgray')
+            }, function() {
+                $(this).css('color', 'blue')
+            });
+        } else if(beatsbucketPlayer.getRepeatState() == "ALL") {
+            $("#beatsbucket .player-area .player_controls .btn_repeat").css('color', 'red');
+            $("#beatsbucket .player-area .player_controls .btn_repeat").hover(function() {
+                $(this).css('color', 'darkgray')
+            }, function() {
+                $(this).css('color', 'red')
+            });
+        }
     });
     $("#beatsbucket .player-area .player_controls .btn_shuffle").click(function() {
         beatsbucketPlayer.shuffle();
-        if(beatsbucketPlayer.isShuffled())
-            $("#beatsbucket .player-area .player_controls .btn_shuffle").html("[Shuffle]");
-        else
-            $("#beatsbucket .player-area .player_controls .btn_shuffle").html("Shuffle");
+        if(beatsbucketPlayer.isShuffled()) {
+            $("#beatsbucket .player-area .player_controls .btn_shuffle").css('color', 'red');
+            $("#beatsbucket .player-area .player_controls .btn_shuffle").hover(function() {
+                $(this).css('color', 'darkgray')
+            }, function() {
+                $(this).css('color', 'red')
+            });
+        } else {
+            $("#beatsbucket .player-area .player_controls .btn_shuffle").css('color', 'gray');
+            $("#beatsbucket .player-area .player_controls .btn_shuffle").hover(function() {
+                $(this).css('color', 'darkgray')
+            }, function() {
+                $(this).css('color', 'gray')
+            });
+        }
     });
 
     $("#beatsbucket .player-area .playlist_controls .btn_add").click(function() {

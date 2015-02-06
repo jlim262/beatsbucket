@@ -36,8 +36,8 @@
                 <td class="btn_play buttons"><span class="glyphicon glyphicon-play" aria-hidden="true"></span></td>
                 <td class="btn_stop buttons"><span class="glyphicon glyphicon-stop" aria-hidden="true"></span></td>
                 <td class="btn_next buttons"><span class="glyphicon glyphicon-step-forward" aria-hidden="true"></span></td>
-                <td class="btn_repeat buttons"><span class="glyphicon glyphicon-retweet" aria-hidden="true"></span></td>
-                <td class="btn_shuffle buttons"><span class="glyphicon glyphicon-random" aria-hidden="true"></span></td>
+                <td class="btn_repeat "><span class="glyphicon glyphicon-retweet" aria-hidden="true"></span></td>
+                <td class="btn_shuffle "><span class="glyphicon glyphicon-random" aria-hidden="true"></span></td>
             </table>
         </div>
         <div class="playlist"></div>

@@ -27,7 +27,7 @@ html, body {
     text-align: center;
     font-size: 14px;
     cursor: pointer;
-    color: firebrick;
+    color: gray;
 }
 
 #beatsbucket .player-area .playlist {
@@ -46,14 +46,34 @@ html, body {
     font-weight: bold;
 }
 
-#beatsbucket .player-area .controls .buttons{
+#beatsbucket .player-area .player_controls .buttons{
     font-size: 14px;
     cursor: pointer;
-    color: firebrick;
+    color: gray;
 }
 
-.controls .buttons:hover {
+#beatsbucket .player-area .player_controls .buttons:hover {
     font-weight: bold;
+}
+
+#beatsbucket .player-area .player_controls .btn_repeat{
+    font-size: 14px;
+    cursor: pointer;
+    color: gray;
+}
+
+#beatsbucket .player-area .player_controls .btn_repeat:hover {
+    color: darkgray;
+}
+
+#beatsbucket .player-area .player_controls .btn_shuffle{
+    font-size: 14px;
+    cursor: pointer;
+    color: gray;
+}
+
+#beatsbucket .player-area .player_controls .btn_shuffle:hover {
+    color: darkgray;
 }
 
 #beatsbucket .player-area .playlist_controls table {
@@ -65,7 +85,7 @@ html, body {
 }
 
 #beatsbucket .player-area .buttons:hover {
-    color: red;
+    color: darkgray;
 }
 
 #beatsbucket .contents-area {
