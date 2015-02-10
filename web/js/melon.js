@@ -180,7 +180,7 @@ var melonService = function(beatsbucketPlayer_p) {
                 if ([ 'realtime', 'todayTopSong', 'topGenres', 'newSong' ]
                     .indexOf(chartType_p) > -1) {
 
-                    $("#beatsbucket .contents-area .search-result table").empty();
+                    $("#beatsbucket .contents-area .search-result").empty();
                     searchedSongs = [];
 
                     //$("#searchResultTmpl").tmpl(response.melon.songs).appendTo("#test_area");
